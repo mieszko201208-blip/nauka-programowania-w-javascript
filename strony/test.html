@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World – JavaScript</title>
+</head>
+<body>
+  <h1>Witaj w JavaScript!</h1>
+  <p id="message">Tekst zostanie zmieniony przez JavaScript.</p>
+  <button onclick="sayHello()">Kliknij mnie</button>
+
+  <script>
+    function sayHello() {
+      document.getElementById("message").textContent = "Hello World! JavaScript działa.";
+      console.log("Hello World z konsoli!");
+    }
+  </script>
+</body>
+</html>
