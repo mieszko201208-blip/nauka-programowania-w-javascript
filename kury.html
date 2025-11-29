@@ -1,6 +1,60 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<style>
+			img {
+				position: absolute;
+				width: 100px;
+				height: 100px;
+			}
+		</style>
+		<script type="module">
+			function wyswietlKure(kura, pozycjaLeft, pozycjaTop) {
+				kura.style.left = `${pozycjaLeft.toString(10)}px`;
+				kura.style.top = `${pozycjaTop.toString(10)}px`;
+			}
+
+			const kura1 = document.querySelector("img:nth-of-type(1)");
+			let pozycjaLeftKury1 = 0;
+			let pozycjaTopKury1 = 0;
+			wyswietlKure(kura1, pozycjaLeftKury1, pozycjaTopKury1);
+
+			function obsluzKlikniecieNaKlawiaturze(zdarzenie) {
+				switch (zdarzenie.key) {
+					case "w":
+						pozycjaLeftKury1 = pozycjaLeftKury1;
+						pozycjaTopKury1 = pozycjaTopKury1 - 5;
+						break;
+					case "a":
+						pozycjaLeftKury1 = pozycjaLeftKury1 - 5;
+						pozycjaTopKury1 = pozycjaTopKury1;
+						break;
+					case "s":
+						pozycjaLeftKury1 = pozycjaLeftKury1;
+						pozycjaTopKury1 = pozycjaTopKury1 + 5;
+						break;
+					case "d":
+						pozycjaLeftKury1 = pozycjaLeftKury1 + 5;
+						pozycjaTopKury1 = pozycjaTopKury1;
+						break;
+				}
+				wyswietlKure(kura1, pozycjaLeftKury1, pozycjaTopKury1);
+			}
+			document.addEventListener("keydown", obsluzKlikniecieNaKlawiaturze);
+			
+			const kura2 = document.querySelector("img:nth-of-type(2)");
+			async function czekaj(sekundy) {
+				await new Promise((resolve) => {
+					setTimeout(resolve, sekundy * 1000);
+				});
+			}
+			for (;;) {
+				let pozycjaLeftKury2 = Math.random() * (window.innerWidth - 100);
+				let pozycjaTopKury2 = Math.random() * (window.innerHeight - 100);
+				wyswietlKure(kura2, pozycjaLeftKury2, pozycjaTopKury2);
+				await czekaj(1);
+			}
+		</script>
 	</head>
 	<body>
 		<img src="./kura.png" alt="Kura">
